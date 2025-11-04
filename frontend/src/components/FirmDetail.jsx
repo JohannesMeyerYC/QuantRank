@@ -233,3 +233,5 @@ const StatCard = ({ label, value, highlight = false, gradient = false }) => (
 );
 
 export default FirmDetail;
+
+//test
