@@ -237,7 +237,3 @@ MIT License - see [LICENSE](LICENSE) file
 ## Contact
 
 Questions? Open an issue or reach out!
-
----
-
-**Built with heart for the quant community**
