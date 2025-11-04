@@ -1,0 +1,369 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  color: #222;
+}
+
+.container {
+  flex: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  width: 100%;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+/* Swipe View */
+.swipe-view {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.question {
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.matchup {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.firm-card {
+  flex: 1;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.firm-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.firm-type {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.vs {
+  font-size: 20px;
+  color: #999;
+  font-weight: 500;
+}
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #222;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #000;
+}
+
+.btn-secondary {
+  background: white;
+  color: #222;
+  border: 1px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+}
+
+.btn-text {
+  background: none;
+  color: #666;
+  padding: 8px 16px;
+}
+
+.btn-text:hover {
+  color: #222;
+}
+
+.comment-section {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.result-view {
+  text-align: center;
+  padding: 60px 24px;
+}
+
+.result-message {
+  font-size: 24px;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* Firms List */
+.firms-list h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-tab {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.filter-tab:hover {
+  color: #222;
+}
+
+.filter-tab.active {
+  color: #222;
+  border-bottom-color: #222;
+}
+
+.firms-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.firm-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.2s;
+}
+
+.firm-item:hover {
+  border-color: #222;
+  transform: translateY(-2px);
+}
+
+.firm-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.firm-item-name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.firm-item-type {
+  color: #666;
+  font-size: 14px;
+}
+
+.firm-item-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.win-rate {
+  font-weight: 500;
+}
+
+.vote-count {
+  color: #666;
+}
+
+.no-data {
+  color: #999;
+}
+
+/* Firm Detail */
+.firm-detail {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.back-link:hover {
+  color: #222;
+}
+
+.firm-header {
+  margin-bottom: 32px;
+}
+
+.firm-header h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 14px;
+}
+
+.comments-section h2 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.comment-header {
+  margin-bottom: 8px;
+}
+
+.sentiment {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sentiment.picked {
+  color: #27ae60;
+}
+
+.sentiment.passed {
+  color: #e74c3c;
+}
+
+.comment-text {
+  color: #444;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .matchup {
+    flex-direction: column;
+  }
+  
+  .vs {
+    transform: rotate(90deg);
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
