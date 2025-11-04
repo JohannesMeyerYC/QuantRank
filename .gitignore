@@ -34,12 +34,6 @@ instance/
 .env
 .flaskenv
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
-quantrank.db
-
 # Node
 node_modules/
 npm-debug.log*
