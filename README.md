@@ -7,16 +7,16 @@ Vote on head-to-head matchups between hedge funds, trading firms, and banks to d
 ![QuantRank Demo](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-## 🚀 Features
+## Features
 
-- **🎯 Head-to-Head Voting**: Swipe-style comparison between firms
-- **📊 Real-time Rankings**: Live win rates and statistics
-- **💬 Community Comments**: Share why you prefer certain firms
-- **🔍 Detailed Firm Pages**: View stats, comments, and career links
-- **🎨 Modern UI**: Dark mode, smooth animations, responsive design
-- **🐳 Fully Dockerized**: One-command deployment
+- **Head-to-Head Voting**: Swipe-style comparison between firms
+- **Real-time Rankings**: Live win rates and statistics
+- **Community Comments**: Share why you prefer certain firms
+- **Detailed Firm Pages**: View stats, comments, and career links
+- **Modern UI**: Dark mode, smooth animations, responsive design
+- **Fully Dockerized**: One-command deployment
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 18** with Vite
@@ -30,7 +30,7 @@ Vote on head-to-head matchups between hedge funds, trading firms, and banks to d
 - **Flask-CORS** for API access
 - **Gunicorn** for production serving
 
-## 📦 Quick Start
+## Quick Start
 
 ### Option 1: Docker (Recommended)
 
@@ -78,7 +78,7 @@ Visit:
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:5000/api
 
-## 🐳 Docker Commands
+## Docker Commands
 
 ```bash
 # Build the image
@@ -94,7 +94,7 @@ docker-compose down           # Stop services
 docker-compose down -v        # Stop and remove volumes
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 quantrank/
@@ -114,7 +114,7 @@ quantrank/
 └── README.md                # This file
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### GET `/api/matchup`
 Get random pair of firms for voting
@@ -151,7 +151,7 @@ Get all firms with statistics
 ### GET `/api/firm/:id`
 Get detailed firm information and comments
 
-## 🌐 Deployment
+## Deployment
 
 ### Deploy to Railway
 
@@ -189,7 +189,7 @@ fly launch
 fly deploy
 ```
 
-## 🔧 Environment Variables
+## Environment Variables
 
 ```bash
 # Production
@@ -203,7 +203,7 @@ DATABASE=quantrank.db
 PORT=5000
 ```
 
-## 📝 Adding New Firms
+## Adding New Firms
 
 Edit `firmslist.json`:
 
@@ -216,7 +216,7 @@ Edit `firmslist.json`:
 
 Types: `Hedge Fund`, `Trading Firm`, `Global Bank`, `Bank`, `Asset Manager`, `FinTech`
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/AmazingFeature`)
@@ -224,17 +224,17 @@ Types: `Hedge Fund`, `Trading Firm`, `Global Bank`, `Bank`, `Asset Manager`, `Fi
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## 📜 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Inspired by the quantitative finance community
 - Built with modern web technologies
 - Designed for speed and simplicity
 
-## 📧 Contact
+## Contact
 
 Questions? Open an issue or reach out!
 
