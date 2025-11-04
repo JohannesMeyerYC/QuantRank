@@ -25,7 +25,7 @@ function AppContent() {
             <Link 
               to="/" 
               className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-              ⚡ QuantRank
+              QuantRank
             </Link>
             
             {/* Navigation */}
