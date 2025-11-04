@@ -384,7 +384,7 @@ function SwipeView() {
     </div>
   );
 }
-
+//test
 const FirmCard = ({ firm, otherFirm, onVote, disabled }) => {
   const [isHovered, setIsHovered] = useState(false);
 
