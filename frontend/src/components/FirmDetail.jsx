@@ -40,7 +40,7 @@ function FirmDetail() {
     return (
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="text-center bg-gray-800/60 backdrop-blur-lg rounded-3xl p-10 border border-red-500/40 shadow-2xl">
-          <div className="text-7xl mb-6">❌</div>
+          <div className="text-7xl mb-6"></div>
           <h2 className="text-3xl font-bold text-red-400 mb-6">
             Firm not found
           </h2>
@@ -182,7 +182,7 @@ function FirmDetail() {
 
         {comments.length === 0 && (
           <div className="text-center py-20">
-            <div className="text-8xl mb-6">💬</div>
+            <div className="text-8xl mb-6"></div>
             <h3 className="text-3xl font-bold text-gray-300 mb-3">
               No comments yet
             </h3>
