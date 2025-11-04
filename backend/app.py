@@ -8,17 +8,24 @@ import json
 app = Flask(__name__, static_folder='static')
 CORS(app)
 
-# Use environment variable for database path (for Docker volumes)
 DATABASE = os.environ.get('DATABASE', 'quantrank.db')
 FIRMS_FILE = 'firmslist.json'
 
+# --- DATABASE UTILITIES ---
+
 def get_db():
+    # Connects to the database path defined above
     db = sqlite3.connect(DATABASE)
     db.row_factory = sqlite3.Row
     return db
 
 def init_db():
+    # Check if the database file already exists. 
+    # This check is crucial for persistence.
+    db_exists = os.path.exists(DATABASE)
     db = get_db()
+    
+    # 1. Always ensure tables exist using 'CREATE TABLE IF NOT EXISTS'
     db.execute('''
         CREATE TABLE IF NOT EXISTS firms (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,21 +46,41 @@ def init_db():
         )
     ''')
     
-    with open(FIRMS_FILE, 'r', encoding='utf-8') as f:
-        firms = json.load(f)
-
-    firms = [firm for firm in firms if firm.get('name') != 'name' and firm.get('type') != 'type']
-
-    for firm in firms:
-        name = firm['name']
-        firm_type = firm['type']
+    # 2. Populate initial data ONLY if the database file did not exist before this run.
+    if not db_exists:
+        print(f"INFO: Database file {DATABASE} is new. Initializing with firms data...")
         try:
-            db.execute('INSERT INTO firms (name, type) VALUES (?, ?)', (name, firm_type))
-        except sqlite3.IntegrityError:
-            pass
+            with open(FIRMS_FILE, 'r', encoding='utf-8') as f:
+                firms_data = json.load(f)
+        except FileNotFoundError:
+            print(f"WARNING: {FIRMS_FILE} not found. Skipping initial firm population.")
+            db.close()
+            return
+        except json.JSONDecodeError:
+            print(f"ERROR: Could not decode JSON from {FIRMS_FILE}. Skipping initial firm population.")
+            db.close()
+            return
+
+        # Filter out invalid entries
+        firms_to_insert = [firm for firm in firms_data if firm.get('name') and firm.get('type')]
+
+        for firm in firms_to_insert:
+            name = firm['name']
+            firm_type = firm['type']
+            # Using INSERT OR IGNORE protects against duplicate entries 
+            # if the firms table somehow gets truncated or re-run
+            try:
+                db.execute('INSERT OR IGNORE INTO firms (name, type) VALUES (?, ?)', (name, firm_type))
+            except Exception as e:
+                print(f"Error inserting firm {name}: {e}")
+
+        print(f"INFO: Successfully inserted {len(firms_to_insert)} unique firms.")
+    else:
+        print(f"INFO: Database file {DATABASE} already exists. Skipping initial firm population.")
     
     db.commit()
     db.close()
+
 
 @app.route('/api/matchup', methods=['GET'])
 def get_matchup():
