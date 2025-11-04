@@ -16,4 +16,4 @@ export default defineConfig({
     assetsDir: 'assets',
     emptyOutDir: true,
   }
-})
+})// Railway fix: ensure pure UTF-8 encoding
