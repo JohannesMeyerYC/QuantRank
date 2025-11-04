@@ -98,17 +98,21 @@ function FirmsList() {
     <div className="flex-1 p-4 sm:p-6 lg:p-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-10 sm:mb-14 pt-4">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent">
+        {/* CHANGED: Reduced margin on mobile */}
+        <div className="mb-8 sm:mb-12 pt-4">
+          {/* CHANGED: Reduced text size on mobile */}
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent">
             All Firms
           </h1>
-          <p className="text-gray-400 text-xl">
+          {/* CHANGED: Reduced text size on mobile */}
+          <p className="text-gray-400 text-lg sm:text-xl">
             Compare quant firms and trading houses
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex gap-4 mb-12 p-3 bg-gray-800/60 backdrop-blur-md rounded-2xl border border-gray-700/50 shadow-lg overflow-x-auto whitespace-nowrap w-full">
+        {/* CHANGED: Reduced gap, margin, and padding on mobile */}
+        <div className="flex gap-2 sm:gap-4 mb-10 sm:mb-12 p-2 sm:p-3 bg-gray-800/60 backdrop-blur-md rounded-2xl border border-gray-700/50 shadow-lg overflow-x-auto whitespace-nowrap w-full">
           {[
             "all",
             "Hedge Fund",
@@ -121,7 +125,8 @@ function FirmsList() {
             <button
               key={type}
               onClick={() => setFilter(type)}
-              className={`flex-shrink-0 px-5 py-2.5 text-sm font-semibold rounded-xl
+              // CHANGED: Reduced padding on mobile
+              className={`flex-shrink-0 px-4 py-2 sm:px-5 sm:py-2.5 text-sm font-semibold rounded-xl
                 transition-all duration-300 transform-gpu active:scale-95
                 ${
                   filter === type
@@ -136,15 +141,17 @@ function FirmsList() {
 
         {/* Firms Grid */}
         {filteredFirms.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          // CHANGED: Reduced gap on mobile
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {filteredFirms.map((firm) => (
               <Link
                 key={firm.id}
                 to={`/firm/${firm.id}`}
+                // CHANGED: Reduced padding on mobile
                 className="group relative block w-full bg-gradient-to-br from-gray-800/70 to-gray-900/90 
-             rounded-3xl p-7 border-2 border-gray-700/60 
-             transition-all duration-300 transform-gpu hover:border-emerald-500/60 
-             hover:shadow-2xl hover:shadow-emerald-500/10 hover:scale-[1.01] active:scale-[0.99]"
+              rounded-3xl p-6 sm:p-7 border-2 border-gray-700/60 
+              transition-all duration-300 transform-gpu hover:border-emerald-500/60 
+              hover:shadow-2xl hover:shadow-emerald-500/10 hover:scale-[1.01] active:scale-[0.99]"
               >
                 {/* Decorative overlays */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-3xl blur-md opacity-0 group-hover:opacity-10 pointer-events-none"></div>
@@ -155,7 +162,8 @@ function FirmsList() {
                 {/* Card content */}
                 <div className="relative z-10 flex flex-col">
                   <div className="flex items-start justify-between mb-5">
-                    <h2 className="text-xl font-black text-white group-hover:text-emerald-300 transition-colors duration-300 pr-2 leading-snug">
+                    {/* CHANGED: Reduced text size on mobile */}
+                    <h2 className="text-lg sm:text-xl font-black text-white group-hover:text-emerald-300 transition-colors duration-300 pr-2 leading-snug">
                       {firm.name}
                     </h2>
                     <span
@@ -175,7 +183,8 @@ function FirmsList() {
                           Win Rate
                         </span>
                         <span
-                          className={`text-3xl font-black ${
+                          // CHANGED: Reduced text size on mobile
+                          className={`text-2xl sm:text-3xl font-black ${
                             firm.win_rate >= 60
                               ? "text-emerald-400"
                               : firm.win_rate >= 40
@@ -204,7 +213,8 @@ function FirmsList() {
                         <span className="text-gray-500 font-medium">
                           Total Votes
                         </span>
-                        <span className="text-gray-200 font-bold text-lg">
+                        {/* CHANGED: Reduced text size on mobile */}
+                        <span className="text-gray-200 font-bold text-base sm:text-lg">
                           {firm.total}
                         </span>
                       </div>
@@ -224,12 +234,15 @@ function FirmsList() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-gray-800/50 rounded-2xl border border-gray-700/50">
+          // CHANGED: Reduced padding on mobile
+          <div className="text-center py-16 sm:py-20 bg-gray-800/50 rounded-2xl border border-gray-700/50">
             <SearchIcon />
-            <h3 className="text-3xl font-bold text-gray-300 mb-3">
+            {/* CHANGED: Reduced text size on mobile */}
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">
               No firms found
             </h3>
-            <p className="text-gray-500 text-lg">Try adjusting your filter</p>
+            {/* CHANGED: Reduced text size on mobile */}
+            <p className="text-gray-500 text-base sm:text-lg">Try adjusting your filter</p>
           </div>
         )}
       </div>

@@ -140,7 +140,12 @@ function SwipeView() {
       <div className="flex-1 flex items-center justify-center p-4">
         <CustomStyles />
         <div className="text-center">
-          <div className="w-20 h-20 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+          {/* CHANGED: Removed spinning border animation, replaced with pulsing icon */}
+          <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-shadow">
+            <svg className="w-10 h-10 text-emerald-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
           <p className="text-gray-300 text-xl font-semibold animate-pulse">
             Loading next financial showdown...
           </p>
@@ -174,20 +179,22 @@ function SwipeView() {
       <div className="flex-1 flex items-center justify-center p-4 overflow-y-auto">
         <CustomStyles />
         <div className="w-full max-w-3xl py-8">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-lg rounded-3xl p-8 sm:p-12 border border-emerald-500/40 shadow-2xl shadow-emerald-500/20 animate-[fadeIn_0.5s_ease-out]">
+          {/* CHANGED: Reduced padding for mobile (p-6) */}
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-lg rounded-3xl p-6 sm:p-10 border border-emerald-500/40 shadow-2xl shadow-emerald-500/20 animate-[fadeIn_0.5s_ease-out]">
             
-            {/* Success Icon */}
-            <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-[scaleIn_0.6s_ease-out] animate-pulse-shadow">
+            {/* CHANGED: Reduced icon size for mobile */}
+            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-[scaleIn_0.6s_ease-out] animate-pulse-shadow">
               <svg className="w-16 h-16 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
               </svg>
             </div>
 
-            {/* Vote Result */}
-            <h2 className="text-4xl font-black text-white mb-4 text-center">
+            {/* CHANGED: Reduced text size for mobile */}
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 text-center">
               Vote Recorded!
             </h2>
-            <p className="text-2xl text-gray-300 mb-8 leading-relaxed text-center">
+            {/* CHANGED: Reduced text size for mobile */}
+            <p className="text-lg sm:text-2xl text-gray-300 mb-8 leading-relaxed text-center">
               You picked{" "}
               <span className="text-emerald-400 font-black">{result.winner}</span>
               {" "}over{" "}
@@ -195,12 +202,16 @@ function SwipeView() {
             </p>
 
             {/* Stats Section */}
-            <div className="bg-gray-800/60 rounded-2xl p-6 mb-6 border border-gray-700/50">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-gray-400 font-semibold text-lg">
+            {/* CHANGED: Reduced padding for mobile (p-4) */}
+            <div className="bg-gray-800/60 rounded-2xl p-4 sm:p-6 mb-6 border border-gray-700/50">
+              {/* CHANGED: Stacked flex column on mobile (flex-col) to prevent cropping */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                {/* CHANGED: Reduced text size, centered on mobile */}
+                <span className="text-gray-400 font-semibold text-base sm:text-lg text-center sm:text-left mb-2 sm:mb-0">
                   {result.winner}'s Community Pick Rate
                 </span>
-                <span className="text-3xl font-black text-emerald-400">
+                {/* CHANGED: Reduced text size, centered on mobile */}
+                <span className="text-2xl sm:text-3xl font-black text-emerald-400 text-center sm:text-left">
                   {resultData.firm.win_rate}%
                 </span>
               </div>
@@ -232,9 +243,10 @@ function SwipeView() {
 
             {/* POST-VOTE COMMENT SECTION */}
             {!hasCommented ? (
-              <div className="bg-gray-800/60 rounded-2xl p-6 mb-6 border border-emerald-700/50">
+              // CHANGED: Reduced padding for mobile (p-4)
+              <div className="bg-gray-800/60 rounded-2xl p-4 sm:p-6 mb-6 border border-emerald-700/50">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-                  <span className="text-2xl mr-3">✍️</span> Add your reason (Optional)
+                  <span className="text-2xl mr-3"></span> Add your reason (Optional)
                 </h3>
                 {showComment ? (
                   <div className="space-y-4">
@@ -265,7 +277,7 @@ function SwipeView() {
             ) : (
               <div className="bg-emerald-800/30 rounded-2xl p-4 mb-6 border border-emerald-500/40 text-center">
                 <p className="text-emerald-400 font-semibold">
-                  ✅ Thanks! Your comment has been saved to the database.
+                  Thanks! Your comment has been saved to the database.
                 </p>
               </div>
             )}
@@ -311,16 +323,18 @@ function SwipeView() {
 
             {/* Action Buttons */}
             <div className="space-y-3">
+              {/* CHANGED: Reduced padding and text size for mobile */}
               <button
                 onClick={fetchMatchup}
-                className="w-full px-10 py-5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-black text-xl rounded-2xl hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-xl shadow-emerald-500/40 hover:shadow-emerald-500/60 hover:scale-105 active:scale-95"
+                className="w-full px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-black text-lg sm:text-xl rounded-2xl hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-xl shadow-emerald-500/40 hover:shadow-emerald-500/60 hover:scale-105 active:scale-95"
               >
                 Next Matchup →
               </button>
 
+              {/* CHANGED: Reduced text size for mobile */}
               <Link
                 to={`/firm/${resultData.firm.id}`}
-                className="block w-full px-8 py-4 bg-gray-700/60 text-white font-bold text-lg rounded-2xl hover:bg-gray-700 transition-all duration-300 text-center border border-gray-600/50 hover:border-gray-500"
+                className="block w-full px-8 py-4 bg-gray-700/60 text-white font-bold text-base sm:text-lg rounded-2xl hover:bg-gray-700 transition-all duration-300 text-center border border-gray-600/50 hover:border-gray-500"
               >
                 View {result.winner} Details
               </Link>
@@ -339,16 +353,19 @@ function SwipeView() {
     <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
       <CustomStyles />
       <div className="w-full max-w-7xl">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-10 sm:mb-16 bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent px-4 leading-tight">
+        {/* CHANGED: Reduced text size and margin for mobile */}
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-black text-center mb-6 sm:mb-10 bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent px-4 leading-tight">
           Which would you rather work at?
         </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr,auto,1fr] gap-8 lg:gap-12 items-stretch mb-10">
+        {/* CHANGED: Reduced gaps and margins for mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr,auto,1fr] gap-4 sm:gap-8 lg:gap-12 items-stretch mb-6 sm:mb-10">
           <FirmCard firm={firmA} otherFirm={firmB} onVote={handleVote} disabled={submitting} />
 
           <div className="flex justify-center items-center">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 transform hover:rotate-180 hover:scale-110 transition-all duration-700">
-              <span className="text-white font-black text-2xl sm:text-3xl lg:text-4xl">VS</span>
+            {/* CHANGED: Reduced size and text size for mobile */}
+            <div className="w-16 h-16 sm:w-20 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 transform hover:rotate-180 hover:scale-110 transition-all duration-700">
+              <span className="text-white font-black text-xl sm:text-2xl lg:text-4xl">VS</span>
             </div>
           </div>
 
@@ -375,7 +392,8 @@ const FirmCard = ({ firm, otherFirm, onVote, disabled }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-lg rounded-3xl p-8 sm:p-10 lg:p-12 border-2 border-gray-700/60 hover:border-emerald-500/60 transition-all duration-500 shadow-2xl hover:shadow-emerald-500/20 overflow-hidden min-h-[350px] sm:min-h-[400px] flex flex-col"
+      // CHANGED: Reduced padding and min-height for mobile
+      className="group relative bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-lg rounded-3xl p-6 sm:p-8 lg:p-12 border-2 border-gray-700/60 hover:border-emerald-500/60 transition-all duration-500 shadow-2xl hover:shadow-emerald-500/20 overflow-hidden min-h-[300px] sm:min-h-[350px] flex flex-col"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-emerald-500/5 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
       <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-3xl blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none"></div>
@@ -392,8 +410,9 @@ const FirmCard = ({ firm, otherFirm, onVote, disabled }) => {
         </span>
 
         <div className="flex-1 flex items-center justify-center">
+          {/* CHANGED: Reduced text size for mobile */}
           <h2
-            className={`text-3xl sm:text-4xl lg:text-5xl font-black mb-8 bg-gradient-to-br from-white via-gray-200 to-gray-300 bg-clip-text text-transparent transition-all duration-300 leading-tight ${
+            className={`text-2xl sm:text-3xl lg:text-5xl font-black mb-8 bg-gradient-to-br from-white via-gray-200 to-gray-300 bg-clip-text text-transparent transition-all duration-300 leading-tight ${
               isHovered ? "scale-110" : ""
             }`}
           >
@@ -401,10 +420,11 @@ const FirmCard = ({ firm, otherFirm, onVote, disabled }) => {
           </h2>
         </div>
 
+        {/* CHANGED: Reduced padding and text size for mobile */}
         <button
           onClick={() => onVote(firm.id, otherFirm.id)}
           disabled={disabled}
-          className="w-full py-5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-black text-xl rounded-2xl shadow-xl shadow-emerald-500/40 hover:from-emerald-600 hover:to-emerald-700 hover:shadow-emerald-500/60 hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-black text-lg sm:text-xl rounded-2xl shadow-xl shadow-emerald-500/40 hover:from-emerald-600 hover:to-emerald-700 hover:shadow-emerald-500/60 hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
           {disabled ? "Submitting..." : "Pick"}
         </button>
@@ -511,11 +531,12 @@ const CareerPageButton = ({ firmName }) => {
   if (!careerUrl) return null;
 
   return (
+    // CHANGED: Reduced text size for mobile
     <a
       href={careerUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold text-lg rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 active:scale-95"
+      className="block w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold text-base sm:text-lg rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 active:scale-95"
     >
       🚀 View {firmName} Careers
     </a>

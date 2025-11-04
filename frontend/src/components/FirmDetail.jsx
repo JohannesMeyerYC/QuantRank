@@ -39,14 +39,17 @@ function FirmDetail() {
   if (!data) {
     return (
       <div className="flex-1 flex items-center justify-center p-4">
-        <div className="text-center bg-gray-800/60 backdrop-blur-lg rounded-3xl p-10 border border-red-500/40 shadow-2xl">
-          <div className="text-7xl mb-6"></div>
-          <h2 className="text-3xl font-bold text-red-400 mb-6">
+        {/* CHANGED: Reduced padding on mobile */}
+        <div className="text-center bg-gray-800/60 backdrop-blur-lg rounded-3xl p-6 sm:p-10 border border-red-500/40 shadow-2xl">
+          {/* CHANGED: Reduced text size on mobile */}
+          <div className="text-6xl sm:text-7xl mb-6">⚠️</div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-red-400 mb-6">
             Firm not found
           </h2>
           <Link
             to="/firms"
-            className="inline-block px-8 py-4 bg-emerald-500 text-white font-bold text-lg rounded-xl hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-emerald-500/50 hover:scale-105"
+            // CHANGED: Reduced text size and padding on mobile
+            className="inline-block px-6 py-3 sm:px-8 sm:py-4 bg-emerald-500 text-white font-bold text-base sm:text-lg rounded-xl hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-emerald-500/50 hover:scale-105"
           >
             ← Back to firms
           </Link>
@@ -63,7 +66,8 @@ function FirmDetail() {
         {/* Back Button */}
         <Link
           to="/firms"
-          className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-semibold text-lg mb-8 group transition-colors duration-300"
+          // CHANGED: Reduced margin on mobile
+          className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-semibold text-lg mb-6 sm:mb-8 group transition-colors duration-300"
         >
           <svg
             className="w-6 h-6 mr-2 transform group-hover:-translate-x-2 transition-transform duration-300"
@@ -82,10 +86,12 @@ function FirmDetail() {
         </Link>
 
         {/* Header */}
-        <div className="bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-lg rounded-3xl p-8 sm:p-10 lg:p-12 border-2 border-gray-700/60 shadow-2xl mb-10">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
+        {/* CHANGED: Reduced padding and margin on mobile */}
+        <div className="bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-lg rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-gray-700/60 shadow-2xl mb-8 sm:mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-6 sm:mb-8">
             <div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent mb-4 leading-tight">
+              {/* CHANGED: Reduced text size on mobile */}
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent mb-4 leading-tight">
                 {firm.name}
               </h1>
               <span
@@ -101,7 +107,8 @@ function FirmDetail() {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-8">
+          {/* CHANGED: Reduced gap and margin on mobile */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <StatCard
               label="Win Rate"
               value={`${firm.win_rate}%`}
@@ -139,7 +146,8 @@ function FirmDetail() {
         {/* Comments Section */}
         {comments.length > 0 && (
           <div>
-            <h2 className="text-4xl font-black mb-8 text-white">
+            {/* CHANGED: Reduced text size and margin on mobile */}
+            <h2 className="text-3xl sm:text-4xl font-black mb-6 sm:mb-8 text-white">
               Recent Comments
             </h2>
 
@@ -147,15 +155,18 @@ function FirmDetail() {
               {comments.map((comment, index) => (
                 <div
                   key={index}
+                  // CHANGED: Reduced padding on mobile
                   className={`bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border-l-4 ${
                     comment.sentiment === "picked"
                       ? "border-emerald-500 hover:border-emerald-400"
                       : "border-red-500 hover:border-red-400"
                   } transition-all duration-300 hover:shadow-2xl shadow-lg`}
                 >
-                  <div className="flex flex-wrap items-center gap-4 mb-4">
+                  {/* CHANGED: Reduced gap on mobile */}
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
                     <span
-                      className={`inline-flex items-center px-4 py-2 text-sm font-black rounded-full ${
+                      // CHANGED: Reduced padding on mobile
+                      className={`inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-black rounded-full ${
                         comment.sentiment === "picked"
                           ? "bg-emerald-500/25 text-emerald-300 border-2 border-emerald-400/40"
                           : "bg-red-500/25 text-red-300 border-2 border-red-400/40"
@@ -171,7 +182,8 @@ function FirmDetail() {
                     </span>
                   </div>
 
-                  <p className="text-gray-200 leading-relaxed text-lg font-medium">
+                  {/* CHANGED: Reduced text size on mobile */}
+                  <p className="text-gray-200 leading-relaxed text-base sm:text-lg font-medium">
                     "{comment.text}"
                   </p>
                 </div>
@@ -181,12 +193,15 @@ function FirmDetail() {
         )}
 
         {comments.length === 0 && (
-          <div className="text-center py-20">
-            <div className="text-8xl mb-6"></div>
-            <h3 className="text-3xl font-bold text-gray-300 mb-3">
+          // CHANGED: Reduced padding on mobile
+          <div className="text-center py-16 sm:py-20">
+            {/* CHANGED: Reduced text size and margin on mobile */}
+            <div className="text-7xl sm:text-8xl mb-4 sm:mb-6">🗣️</div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">
               No comments yet
             </h3>
-            <p className="text-gray-500 text-lg">
+            {/* CHANGED: Reduced text size on mobile */}
+            <p className="text-gray-500 text-base sm:text-lg">
               Be the first to share your thoughts on {firm.name}
             </p>
           </div>
@@ -197,9 +212,11 @@ function FirmDetail() {
 }
 
 const StatCard = ({ label, value, highlight = false, gradient = false }) => (
-  <div className="bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 sm:p-7 border-2 border-gray-700/60 hover:border-emerald-500/40 transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/20 group">
+  // CHANGED: Reduced padding on mobile
+  <div className="bg-gray-800/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 border-2 border-gray-700/60 hover:border-emerald-500/40 transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/20 group">
     <div
-      className={`text-4xl sm:text-5xl font-black mb-3 ${
+      // CHANGED: Reduced text size on mobile
+      className={`text-3xl sm:text-4xl lg:text-5xl font-black mb-3 ${
         gradient
           ? "bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent"
           : highlight
